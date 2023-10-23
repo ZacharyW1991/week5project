@@ -66,3 +66,26 @@ INSERT INTO ticket(serial_num, customer_id) VALUES (5, 3);
 INSERT INTO ticket(serial_num, customer_id) VALUES (1, 1);
 INSERT INTO ticket(serial_num, customer_id) VALUES (5, 3);
 
+CREATE OR REPLACE PROCEDURE add_car(year_made NUMERIC(4), make VARCHAR(50), model VARCHAR(50), color VARCHAR(50), in_inventory BOOLEAN)
+LANGUAGE plpgsql
+AS $$
+BEGIN 
+	INSERT INTO car(year_made, make, model, color, in_inventory)
+	VALUES(year_made, make, model, color, in_inventory);
+END;
+$$;
+
+CALL add_car(2023, 'Mafia', 'Deliverator', 'black', True);
+
+CREATE OR REPLACE PROCEDURE add_staff(first_name VARCHAR(50), last_name VARCHAR(50))
+LANGUAGE plpgsql
+AS $$
+BEGIN 
+	INSERT INTO staff(first_name, last_name)
+	VALUES(first_name, last_name);
+END;
+$$;
+
+CALL add_staff('Hiro', 'Protagonist'); 
+
+SELECT * FROM staff s ;
